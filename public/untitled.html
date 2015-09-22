@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> simple page </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+<h1>This is simple HTML page </h1>
+<p></p>
+<form name="myForm" action="/users" method="post">
+First name: <input type ="text" name="firstname" id="firstname"><br>
+Last name : <input type ="text" name="lastname" id="lastname"><br>
+
+<input type ="radio" name="gender" value="male" id="M"> Male <br>
+<input type ="radio" name="gender" value="female" id="F"> Female <br>
+
+<select name="state" id="state">
+  <option value="s"> State </option>
+  <option value="ny"> New York </option>
+  <option value="nj"> New Jersey </option>
+  <option value="az"> Arizona </option>
+  <option value="pa"> pennsylvania </option>
+	
+</select>
+<br>
+
+<input type="checkbox" name="accept" value="accept" id="accept"> I ACCEPT <br>
+
+<input type="submit" value="submit"> <br>
+
+</form>
+<div id="viewdiv">
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("form").submit(function(event){
+
+             event.preventDefault();
+
+      var formData = {
+              "firstname": $("input[name=firstname]").val(),
+              "lastname": $("input[name=lastname]").val(),
+              "gender": $("input[name=radiobutton]").click(function(){
+                radioValue($('input[name=myradiobutton]:radio:checked'));
+              });
+                 }
+
+      $.ajax({
+          type : "post",
+          url : "/users",
+          data : formData,
+          success: function(data){
+            console.log(data);
+          $("#viewdiv").append("<p> firstname: "+data.firstname+"</p>");
+          $("#viewdiv").append("<p> lastname: "+data.lastname+"</p>");
+
+          }   
+        })   
+
+     });
+  });
+
+
+
+
+
+
+
+  	/*$(document).ready(function(){
+  		$("form").submit(function(event){
+             event.preventDefault();
+
+             var formData = {
+             	"firstname": $("input[name=firstname]").val(),
+             	"lastname": $("input[name=lastname]").val(),
+
+              "gender": $("input[name=radiobutton]:radio").click(function(){
+                  radioValue($('input[name=myradiobutton]:radio:checked'));
+                });
+              radioValue($('input[name=myradiobutton]:radio:checked'));
+               });
+    });
+             };
+             console.log(formData);
+          $.ajax({
+          	type : "post",
+          	url : "/users",
+          	data : formData,
+          	success: function(data){
+          		console.log(data);
+            $("#viewdiv").append("<p> Firstname: "+data.firstname+"</p>");
+            $("#viewdiv").append("<p> Lastname: "+data.lastname+"</p>");
+            $("#viewdiv").append("<p> Gender: " +data.gender+ "</p>");
+          	} 	
+          })   
+  		});
+  	});*/
+
+</script>
+</body>
+</html>

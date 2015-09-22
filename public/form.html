@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> simple page </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+<h1>This is simple HTML page </h1>
+<p></p>
+<form name="myForm" action="/users" method="post">
+First name: <input type ="text" name="firstname" id="firstname"><br>
+Last name : <input type ="text" name="lastname" id="lastname"><br>
+
+<input type="submit" value="submit">
+
+</form>
+<div id="viewdiv">
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+		$("form").submit(function(event){
+           event.preventDefault();
+           var formData = {
+           	"firstname": $("input[name=firstname]").val(),
+           	"lastname": $("input[name=lastname]").val(),
+           };
+           console.log(formData);
+        $.ajax({
+        	type : "post",
+        	url : "/users",
+        	data : formData,
+        	success: function(data){
+        		console.log(data);
+          $("#viewdiv").append("<p> firstname: "+data.firstname+"</p>");
+          $("#viewdiv").append("<p> lastname: "+data.lastname+"</p>");
+
+        	} 	
+        })   
+		});
+	});
+
+</script>
+</body>
+</html>
