@@ -8,8 +8,8 @@ $('document').ready(function(e){
       $.each(data, function( key, val ) {
                 items.push('<div class="alert alert-info"> \
                 <button id='+val.id+' type="button" class="btn btn-default pull-right">X</button> \
-                <h4 > <strong id="s1"> ' + val.additem + '</strong><button id="btn1" type="button" class="btn btn-primary pull-right">$'+ val.price+'</button> </h4> \
-                <p id="p1">'+ val.description+'</p>\
+                <h4 > <strong>' + val.additem + '</strong><button type="button" class="btn btn-primary pull-right">$'+ val.price+'</button> </h4> \
+                <p>'+ val.description+'</p>\
                 </div>');
         $('<div>', { html: items.join( "" )}).appendTo("#d1");
       });
@@ -40,8 +40,8 @@ $('document').ready(function(e){
         var price1=result.price;        
         $("#d1").append('<div><div class="alert alert-info"> \
                 <button id='+result.id+' type="button" class="btn btn-default pull-right">X</button> \
-                <h4 > <strong id="s1"> ' + additem1 + '</strong><button id="btn1" type="button" class="btn btn-primary pull-right"> $'+ price1+'</button> </h4> \
-                <p id="p1">'+ desc1+'</p>\
+                <h4 > <strong> ' + additem1 + '</strong> <button type="button" class="btn btn-primary pull-right"> $'+ price1+'</button> </h4> \
+                <p>'+ desc1+'</p>\
                 </div></div>');
       $("#additem").val("");
       $("#description").val("");
