@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> simple page </title>
+</head>
+<body>
+<h1>url</h1>
+
+<ul id="abc">
+<li data-url="http://www.facebook.com"> facebook.com </li><br><br>
+<li data-url="http://www.google.com"> google.com </li><br><br>
+<li data-url="http://www.twitter.com"> twitter.com </li><br><br>
+<li data-url="http://www.youtube.com"> youtube.com </li><br><br>
+</ul>
+<script type="text/javascript">
+
+
+var b = document.getElementById("abc");
+   b.addEventListener("click",chkurl);
+
+function chkurl(event) {
+var x =  event.target;
+x.getAttribute("data-url");
+ 
+window.open(x.getAttribute("data-url"),"_blank");
+}
+
+
+</script>
+</body>
+</html>

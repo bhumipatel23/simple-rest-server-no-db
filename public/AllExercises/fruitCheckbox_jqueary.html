@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> simple page </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<style>
+  .mydiv {
+    width:300px;
+    height:200px;
+    background-color:grey; 
+    float:left;
+    border-style:solid;
+    padding: 20px;
+  }
+</style>
+
+<script>
+          $(document).ready(function() {
+
+          $("#mydiv1").on("change",'input[type="checkbox"]',function(){
+              var $abc = $(this);
+                 //console.log($abc);
+
+          if($abc.is(":checked"))
+          {
+            var add = $(this).val();
+               //console.log(add);
+            $("#mydiv2").append("<p>"+add+"</p>");
+
+           } 
+
+          else 
+          {
+              var aa =  $("#mydiv2").find("p");
+              console.log(aa);
+              for(var i=0; i<aa.length; i++) 
+              {
+               console.log(this.value);
+                console.log($(aa[i]).html());
+                if(this.value === $(aa[i]).html()) 
+                {
+                  $(aa[i]).remove();
+                 }
+                  
+               }
+            }
+        });
+
+        });
+
+</script>
+</head>
+
+<body>
+
+<h1>This is simple HTML page </h1>
+<p></p>
+
+<div id="mydiv1" class="mydiv">
+
+<input type ="checkbox" name="fruit" value="Mango" id="M">Mango <br>
+<input type ="checkbox" name="fruit" value="Orange" id="O">Orange<br><br>
+<input type ="checkbox" name="fruit" value="Cherry" id="C">Cherry<br><br>
+<input type ="checkbox" name="fruit" value="Grape" id="G">Grape<br><br>
+<input type ="checkbox" name="fruit" value="Strawberry" id="S">Strawberry<br><br>
+</div>
+
+<div id="mydiv2" class="mydiv">
+
+</div>
+
+</body>
+</html>

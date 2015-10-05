@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> simple page </title>
+<style>
+  .mydiv {
+    width:300px;
+    height:200px;
+    background-color:grey; 
+    float:left;
+    border-style:solid;
+    padding: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>This is simple HTML page </h1>
+<p></p>
+
+<div id="mydiv1" class="mydiv">
+
+<form id="myForm" method = "post">
+
+<input type ="checkbox" name="fruit" value="Mango" id="M"> Mango <br>
+<input type ="checkbox" name="fruit" value="Orange" id="O"> Orange <br><br>
+<input type ="checkbox" name="fruit" value="Cherry" id="C"> Cherry <br><br>
+<input type ="checkbox" name="fruit" value="Grape" id="G"> Grape <br><br>
+<input type ="checkbox" name="fruit" value="Strawberry" id="S"> Strawberry <br><br>
+
+</form>
+</div>
+
+<div id="mydiv2" class="mydiv">
+
+</div>
+
+
+<script type="text/javascript">
+
+var b = document.getElementsByTagName("input");
+
+for(var i =0;i<b.length;i++) {
+  
+  b[i].addEventListener("click",chkfruit);
+  //b[i].attachEvent("onclick",rmvfruit);
+
+}
+
+
+
+function chkfruit() {
+
+  if(this.checked) {
+      var c = document.createElement("li");
+      var d = document.createTextNode(this.value);
+     var cc =  c.appendChild(d);
+
+     
+      var y = document.getElementById("mydiv2");
+     
+      var dd = y.appendChild(c);
+      
+  } 
+  else 
+  {
+    var z = document.getElementsByTagName("li");
+   
+    for(var i=0;i<z.length;i++) {
+
+   if(this.value === z[i].innerHTML) {
+        document.getElementById("mydiv2").removeChild(z[i]);
+      } 
+
+    }
+  }
+
+  }
+
+
+
+</script>
+</body>
+</html>

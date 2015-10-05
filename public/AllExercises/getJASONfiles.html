@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> simple page </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+<h1>This is simple HTML page </h1>
+<p></p>
+<form name="myForm" action="/users" method="post">
+First name: <input type ="text" name="firstname" id="firstname"><br>
+Last name : <input type ="text" name="lastname" id="lastname"><br>
+
+<input type="button" id="btn" name="print" value="print">
+
+</form>
+<div id="viewdiv">
+</div>
+
+<script>
+
+$(document).ready(function(e){
+		$("#btn").click(function(event){
+           event.preventDefault();
+           var formData = {
+           	"firstname": $("input[name=firstname]").val(),
+           	"lastname": $("input[name=lastname]").val(),
+           };
+           console.log(formData);
+        $.ajax({
+        	type : "post",
+        	url : "/users",
+        	data : formData,
+        	success: function(data){
+        		console.log(data);
+          $("#viewdiv").append("<p> firstname: "+data.firstname+"</p>");
+          $("#viewdiv").append("<p> lastname: "+data.lastname+"</p>");
+        	} 	
+        });
+        $.getJSON("/users",function(data){
+          var items = [];
+          //console.log(data);
+          $.each(data,function(key,val){
+             //console.log(data);
+     items.push( "<li id='" + key + "'> Id = "+ key + "<br>First Name:" + val.firstname + "<br> Last Name:"+ val.lastname + "</li>" );
+         
+          $("<ul/>",{html: items.join("")}).appendTo("#viewdiv");
+           });
+        });
+
+		
+});
+
+	});
+
+</script>
+</body>
+</html>
