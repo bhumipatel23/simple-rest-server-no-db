@@ -1,50 +1,51 @@
-$('document').ready(function(e){
+$(document).ready(function(e){
 	function dispalyitem(e)
-	{
-	//get all data from server
-		 $.ajax({
-			   url: "/products",
-			   dataType: "json",
-			   type: "get",
-			   success:function(mydata)
-			   {
-				for(var i=0;i<mydata.length;i++)
-				 	{		
-                        var template = Handlebars.compile( $('#add_tpl').html() );
-				        	$('div.page').append(template(mydata[i]));
-				  	}
-				}
-				       
-			   });
+	 {
+		//get data from server
+		$.ajax({
+			url:"/products",
+			dataType:"json",
+			type:"get",
+			success:function(mydata)
+			{
+				
+			var template = Handlebars.compile($("#tpl").html());
+			$("div.page").append(template(mydata));
+				
+			}
+		});
+
 	};
 	dispalyitem(e);
-	
-    $("#add").on('click',function(e){
-		e.preventDefault();
-		
-		var	itmname= $("#additem").val();
-		var	itmdesc= $("#description").val();
-		var	itmprice= $("#price").val();
-			
-		$.ajax({
-            url : "/products",
-            type : "post",			
-            data : {itmname,itmdesc,itmprice},
-			success : function(result){
-				var template = Handlebars.compile( $('#add_tpl').html() );
-				$('div.page').append(template(result));
-				$("#additem").val("");
-				$("#description").val("");
-				$("#price").val("");
-            }
-			});
-	
-    	});
-	
 
-	$(".page").on('click','.glyphicon',function(e){
-		var c = confirm("Are you sure you want to delete it??");
-		if(c === true)
+// for adding data (button click event)
+
+	$("#add").on("click",function(e){
+		e.preventDefault();
+
+		var item_name = $("#additem").val();
+		var description = $("#desc").val();
+		var Price = $("#price").val();
+
+		$.ajax({
+			url:"/products",
+			type:"post",
+			data: {item_name,description,Price},
+			success: function(result){
+				console.log(result);
+				var template = Handlebars.compile( $("#tpl").html() );
+					console.log(template([result]));
+				$(".page").append(template([result]));
+				$("#additem").val("");
+				$("#desc").val("");
+				$("#price").val("");
+
+			}
+		});
+	});
+$(".page").on('click','.glyphicon',function(e){
+		var cnfrm = confirm("Are you sure you want to delete it??");
+		if(cnfrm === true)
 		{
 			var del_item = $(this).prop('id');
 			
@@ -63,4 +64,6 @@ $('document').ready(function(e){
 		}
         
     });
+
+
 });
