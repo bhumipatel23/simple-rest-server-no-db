@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product Page Using Handlebar</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="stylesheets/bootstrap.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/style.css"/>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			<a href="#" class="navbar-brand">Store</a>
+			</div>
+			
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Catalog</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="list-group">
+        <div class="container col-sm-3" style="padding:20px">
+			<a href="#" class="list-group-item active">Cras justo odio</a>
+            <a href="#" class="list-group-item">Dapibus ac faclisis in</a>
+            <a href="#" class="list-group-item">Morbi leo risus</a>
+            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+            <a href="#" class="list-group-item">Vestiburn at eros</a>
+		</div>
+    </div>
+		
+	<div class="container col-sm-9" id="d1">
+		<form class="form-inline" role="form">
+			<div class="form-group">
+				<label for="search">Search:</label>
+					<input type="search" class="form-control" id="search" placeholder="Serach by item name">
+			</div><br>
+		</form>
+
+		<form class="form-inline" role="form">
+			<div class="form-group">
+				<label for="search">Add Item:</label>
+				<label class="sr-only" for="additem">Add Item:</label>
+				<input type="text" class="form-control" id="additem" name="additem" placeholder="Item Name">
+			</div>
+
+			<div class="form-group">
+				<label class="sr-only" for="description">Description:</label>
+				<input type="text" class="form-control" id="desc" placeholder="Description">
+			</div>
+
+			<div class="form-group">
+				<label class="sr-only" for="price">Price:</label>
+				<input type="text" class="form-control" id="price" placeholder="Price">
+			</div>
+
+				<button type="button" class="btn btn-primary" id="add">Add</button>
+				<!--<span class="error" style="display:none"> Please Enter Valid Data</span>-->
+		</form>
+				
+		<div class="page">
+			<script id="tpl" type="text/x-handlebars-template">
+				{{#each this}}
+				<div class="alert alert-info">
+					<h4>{{item_name}}</h4> 
+					<span class="glyphicon glyphicon-remove-sign pull-right" id="{{id}}" style="margin-left:80px"></span>
+
+					<a href="#" class="btn btn-primary pull-right" style="margin-bottom:-80px">${{Price}}</a>
+					<p>{{description}}</p>
+
+				</div>
+				{{/each}}
+			</script>	
+		</div>
+	</div>
+	
+	
+	<script src="javascripts/jquery.min.js"></script>
+	<script src="javascripts/bootstrap.min.js"></script>
+	<script src="javascripts/bootstrap.js"></script>
+	<script src="javascripts/productpage_handlebar.js"></script>
+</body>
+</html>
